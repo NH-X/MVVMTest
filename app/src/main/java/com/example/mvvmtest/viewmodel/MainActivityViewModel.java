@@ -13,7 +13,6 @@ public class MainActivityViewModel extends ViewModel {
     private ValueRepository mRepo;
     private MutableLiveData<List<Integer>> mValues;
     private MutableLiveData<Boolean> mUpDating = new MutableLiveData<>();
-    private MutableLiveData<Integer> mIndex = new MutableLiveData<>();
 
     public void init(){
         if(mValues != null){
