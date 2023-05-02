@@ -1,11 +1,10 @@
 package com.example.mvvmtest.viewmodel;
 
-import android.os.AsyncTask;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import com.example.mvvmtest.MainApplication;
 import com.example.mvvmtest.repositories.ValueRepository;
+import com.example.mvvmtest.tasks.AddNewValueTask;
 
 import java.util.List;
 
@@ -22,23 +21,12 @@ public class MainActivityViewModel extends ViewModel {
         mValues=mRepo.getValues();
     }
 
-    public void addNewValue(final Integer value){
+    public void addNewValue(){
         mUpDating.setValue(false);
-        new AsyncTask<Void,Void,Void>(){
-            @Override
-            protected void onPostExecute(Void unused) {
-                super.onPostExecute(unused);
-                List<Integer> currentValues=mValues.getValue();
-                currentValues.add(value);
-                mValues.postValue(currentValues);
-                mUpDating.postValue(true);
-            }
-
-            @Override
-            protected Void doInBackground(Void... voids) {
-                return null;
-            }
-        }.execute();
+        AddNewValueTask task=new AddNewValueTask();
+        task.setValues(mValues);
+        task.setUpDating(mUpDating);
+        task.execute();
     }
 
     public LiveData<List<Integer>> getValues(){

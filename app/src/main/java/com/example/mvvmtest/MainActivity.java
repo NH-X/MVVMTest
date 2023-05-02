@@ -61,9 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if(v.getId()==R.id.fab_add){
-            int index=myApp.getIndex();
-            Toast.makeText(this, ""+index, Toast.LENGTH_SHORT).show();
-            mMainActivityViewModel.addNewValue(index);
+            mMainActivityViewModel.addNewValue();
         }
     }
 }
