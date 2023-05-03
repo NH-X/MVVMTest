@@ -24,8 +24,9 @@ public class MainActivityViewModel extends ViewModel {
     public void addNewValue(){
         mUpDating.setValue(false);
         AddNewValueTask task=new AddNewValueTask();
+        task.setValues(mValues);
         task.setUpDating(mUpDating);
-        task.execute(mValues);
+        task.execute();
     }
 
     public LiveData<List<Integer>> getValues(){
