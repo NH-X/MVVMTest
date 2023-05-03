@@ -12,20 +12,18 @@ public class AddNewValueTask extends AsyncTask<MutableLiveData<List<Integer>>,Vo
 
     @Override
     protected Void doInBackground(MutableLiveData<List<Integer>>... mutableLiveData) {
+        this.mValues=mutableLiveData[0];
+        List<Integer> currentValues=mValues.getValue();
+        currentValues.add(MainApplication.getInstance().getIndex());
+        mValues.postValue(currentValues);
+        mUpDating.postValue(true);
+
         return null;
     }
 
     @Override
     protected void onPostExecute(Void unused) {
         super.onPostExecute(unused);
-        List<Integer> currentValues=mValues.getValue();
-        currentValues.add(MainApplication.getInstance().getIndex());
-        mValues.postValue(currentValues);
-        mUpDating.postValue(true);
-    }
-
-    public void setValues(MutableLiveData<List<Integer>> values){
-        mValues=values;
     }
 
     public void setUpDating(MutableLiveData<Boolean> upDating){
