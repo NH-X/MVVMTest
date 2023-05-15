@@ -1,13 +1,14 @@
 package com.example.mvvmtest;
 
-import android.view.View;
-import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.mvvmtest.adapters.RecyclerViewAdapter;
 import com.example.mvvmtest.viewmodel.MainActivityViewModel;
 

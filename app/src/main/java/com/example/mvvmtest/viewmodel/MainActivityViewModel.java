@@ -22,10 +22,7 @@ public class MainActivityViewModel extends ViewModel {
     }
 
     public void addNewValue(){
-        mUpDating.setValue(false);
-        AddNewValueTask task=new AddNewValueTask();
-        task.setUpDating(mUpDating);
-        task.execute(mValues);
+        mRepo.startRequest(mUpDating);
     }
 
     public LiveData<List<Integer>> getValues(){

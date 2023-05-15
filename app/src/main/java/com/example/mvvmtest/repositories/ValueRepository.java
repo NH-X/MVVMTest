@@ -1,7 +1,8 @@
 package com.example.mvvmtest.repositories;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
+import com.example.mvvmtest.tasks.AddNewValueTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 public class ValueRepository {
     private static ValueRepository instance;
     private List<Integer> dataSet = new ArrayList<>();
+    private MutableLiveData<List<Integer>> data = new MutableLiveData<>();
 
     public static ValueRepository getInstance() {
         if (null == instance) {
@@ -18,9 +20,17 @@ public class ValueRepository {
     }
 
     public MutableLiveData<List<Integer>> getValues() {
-        MutableLiveData<List<Integer>> data=new MutableLiveData<>();
+        data=new MutableLiveData<>();
         data.setValue(dataSet);
 
         return data;
+    }
+
+    public void startRequest(MutableLiveData<Boolean> isUpDating){
+        isUpDating.setValue(false);
+
+        AddNewValueTask task=new AddNewValueTask();
+        task.setUpDating(isUpDating);
+        task.execute(data);
     }
 }
